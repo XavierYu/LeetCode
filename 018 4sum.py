@@ -7,6 +7,7 @@ class Solution(object):
             """
         
         nums.sort()
+        n = len(nums)
         print nums
         ret = []
         for i in range(0, len(nums)-3):
@@ -16,8 +17,8 @@ class Solution(object):
                 break
             if(nums[i]+nums[n-3]+nums[n-2]+nums[n-1]<target):
                 continue
-            for j in range(index2nd, len(nums)-2):
-                if j==index2nd or (j>index2nd and nums[j] != nums[j-1]):
+            for j in range(i+1, len(nums)-2):
+                if j==i+1 or (j>i+1 and nums[j] != nums[j-1]):
                     lo = j+1
                     hi = len(nums)-1
                     diff = target - nums[i]-nums[j]
