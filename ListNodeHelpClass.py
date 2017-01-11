@@ -1,22 +1,22 @@
 # Definition for singly-linked list.
 class ListNode(object):
-     def __init__(self, x):
-         self.val = x
-         self.next = None
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
 class ListNodeHelpClass(object):
 
-    def createListNodeFromListInput(self, input):
+    def createListNodeFromListInput(self, var):
         """
         rtype = ListNode
         input = List
         """
-        if input ==[]:
+        if not var:
             return None
-        l1 = cur = ListNode(input[0])
-        for i in range(1, len(input)):
-            newListNode = ListNode(input[i])
+        l1 = cur = ListNode(var[0])
+        for i in range(1, len(var)):
+            newListNode = ListNode(var[i])
             cur.next = newListNode
             cur = cur.next
         return l1
@@ -28,27 +28,25 @@ class ListNodeHelpClass(object):
         """
         cur = l1
         ret = []
-        while(cur != None):
+        while cur is not None:
             ret.append(cur.val)
             cur = cur.next
         print "listnode: " + str(ret)
         return ret
 
-    def createListOfListNodeFromListOfList(self, input):
+    def createListOfListNodeFromListOfList(self, var):
         ret= []
-        for i in range(0,len(input)):
-            newListNode = self.createListNodeFromListInput(input[i])
+        for i in range(0, len(var)):
+            newListNode = self.createListNodeFromListInput(var[i])
             ret.append(newListNode)
         return ret
 
-    def printListOfLinkedListNode(self,input):
-        ret = [[] for _ in range(0,len(input))]
-        for i in range(0,len(input)):
-            cur = input[i]
-            while (cur is not None):
+    def printListOfLinkedListNode(self, var):
+        ret = [[] for _ in range(0, len(var))]
+        for i in range(0, len(var)):
+            cur = var[i]
+            while cur is not None:
                 ret[i].append(cur.val)
                 cur = cur.next
         print "List of listnode: " + str(ret)
         return ret
-
-
