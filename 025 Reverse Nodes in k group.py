@@ -31,7 +31,7 @@ class Solution(object):
         count = 0
         stack = []
         while head:
-            count = count +1
+            count += 1
             stack.append(head)
             head = head.next
             if count%k == 0:
@@ -44,18 +44,86 @@ class Solution(object):
         cur.next = None
         return dummy.next
 
+    def reverseKGroup_improved(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        cur = head
+        count = 0
+        while cur and count != k:
+            cur = cur.next
+            count += 1
+
+        if count == k:
+            cur = self.reverseKGroup_improved(cur,k)
+            while count > 0:
+                temp = head.next
+                head.next = cur
+                cur = head
+                head = temp
+                count -= 1
+            head = cur
+
+        return head
+
+    def reverseKGroup_NoneRecursion(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+
+        if not head.next or not head or k == 1:
+            return head
+
+        dummy = ListNode(-1)
+        dummy.next = head
+        begin = dummy
+        i = 0
+        while head:
+            i += 1
+
+            if i%k == 0:
+                begin = self.reverse(begin,head.next)
+                head = begin.next
+            else:
+                head = head.next
+
+        return dummy.next
+
+    def reverse(self, begin, end):
+
+        head = ret = begin.next
+        cur = end
+        while head != end:
+            begin.next = head
+            temp = head.next
+            head.next = cur
+            cur = begin
+            head = temp
+        return ret
+
+
+
+
+
+
+
 
 input = []
-for i in range(0, 10000):
+for i in range(0, 3):
     input.append(i)
 listNodeHelper = ListNodeHelpClass()
 ans = Solution()
 inputList1 = listNodeHelper.createListNodeFromListInput(input)
 listNodeHelper.printLinkedListNode(inputList1)
 
-start = (time.time()-1484304140)*1000
-result = ans.reverseKGroup(inputList1, 3)
-print round((time.time()-1484304140)*1000)-start
+start = time.time()
+result = ans.reverseKGroup_NoneRecursion(inputList1, 2)
+end = time.time()
+print (end-start)*1000
 re1 = listNodeHelper.printLinkedListNode(result)
 
 
