@@ -75,7 +75,7 @@ class Solution(object):
         :rtype: ListNode
         """
 
-        if not head.next or not head or k == 1:
+        if head is None or head.next is None or k == 1:
             return head
 
         dummy = ListNode(-1)
@@ -86,7 +86,7 @@ class Solution(object):
             i += 1
 
             if i%k == 0:
-                begin = self.reverse(begin,head.next)
+                begin = self.reverse(begin, head.next)
                 head = begin.next
             else:
                 head = head.next
@@ -98,10 +98,11 @@ class Solution(object):
         head = ret = begin.next
         cur = end
         while head != end:
+            #print "debug"
             begin.next = head
             temp = head.next
             head.next = cur
-            cur = begin
+            cur = head
             head = temp
         return ret
 
@@ -113,7 +114,7 @@ class Solution(object):
 
 
 input = []
-for i in range(0, 3):
+for i in range(1, 1):
     input.append(i)
 listNodeHelper = ListNodeHelpClass()
 ans = Solution()
@@ -121,9 +122,9 @@ inputList1 = listNodeHelper.createListNodeFromListInput(input)
 listNodeHelper.printLinkedListNode(inputList1)
 
 start = time.time()
-result = ans.reverseKGroup_NoneRecursion(inputList1, 2)
+result = ans.reverseKGroup_NoneRecursion(inputList1, 3)
+# result = ans.reverse(inputList1, inputList1.next.next.next)
 end = time.time()
 print (end-start)*1000
 re1 = listNodeHelper.printLinkedListNode(result)
-
-
+# re1 = listNodeHelper.printLinkedListNode(inputList1)
