@@ -2,6 +2,7 @@ import time
 
 
 class Solution(object):
+    # 比较整体
     def strStr(self, haystack, needle):
         """
         :type haystack: str
@@ -24,6 +25,7 @@ class Solution(object):
                         return ret
         return ret
 
+    # 比较 str vs needle 的单独个体
     def strStr_improved(self, haystack, needle):
         """
         :type haystack: str
