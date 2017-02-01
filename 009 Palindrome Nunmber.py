@@ -34,7 +34,7 @@ class Solution(object):
         return y == reVal
         
     #Improved: compare half of the digits
-     def isPalindrome(self, x):
+    def isPalindrome(self, x):
         """
         :type x: int
         :rtype: bool
